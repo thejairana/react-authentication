@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import LoginForm from "../components/LoginForm";
 
-const Login = ({ isLoggedIn, setIsLoggedIn }) => {
+const Login = ({ setIsLoggedIn, setUser }) => {
   const router = useRouter();
   const [error, setError] = useState("");
 
@@ -24,6 +24,11 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
       // }
 
       setIsLoggedIn(true);
+      setUser({
+        name: "John Doe",
+        email: "john.doe@example.com",
+        phone: "1234567890",
+      });
       router.push("/");
       // Redirect to home page upon successful login
       // You need to implement client-side routing here

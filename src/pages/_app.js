@@ -7,6 +7,8 @@ import Footer from "../components/Footer";
 
 function MyApp({ Component, pageProps }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // You'll need to manage the isLoggedIn state
+  const [user, setUser] = useState(null); // You'll need to manage the user state
+
   return (
     <>
       <CustomRouter isLoggedIn={isLoggedIn} />
@@ -15,6 +17,8 @@ function MyApp({ Component, pageProps }) {
         {...pageProps}
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
+        user={user}
+        setUser={setUser}
       />
       <Footer />
     </>
