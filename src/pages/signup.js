@@ -1,28 +1,31 @@
 // pages/signup.js
 import React, { useState } from "react";
 import Link from "next/link";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import SignupForm from "../components/SignupForm";
+import { useRouter } from "next/router";
 
-const Signup = () => {
+const Signup = ({ isLoggedIn, setIsLoggedIn }) => {
+  const router = useRouter();
+
   const [error, setError] = useState("");
 
   const handleSignup = async (userData) => {
     try {
-      // Call signup API with user data
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+      // // Call signup API with user data
+      // const response = await fetch("/api/signup", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(userData),
+      // });
 
-      if (!response.ok) {
-        throw new Error("Signup failed");
-      }
+      // if (!response.ok) {
+      //   throw new Error("Signup failed");
+      // }
 
+      setIsLoggedIn(true);
+      router.push("/");
       // Redirect to login page upon successful signup
       // You need to implement client-side routing here
     } catch (error) {
@@ -32,7 +35,6 @@ const Signup = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
       <main className="flex-grow">
         <div className="container mx-auto flex justify-center items-center h-full">
           <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
@@ -48,7 +50,6 @@ const Signup = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };
