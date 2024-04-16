@@ -1,8 +1,10 @@
 // components/Footer.js
 const Footer = () => {
   return (
-    <footer>
-      <p>Footer content here</p>
+    <footer className="bg-gray-800 text-white py-4">
+      <div className="container mx-auto text-center">
+        <p>&copy; 2024 My Next.js App. All rights reserved.</p>
+      </div>
     </footer>
   );
 };
