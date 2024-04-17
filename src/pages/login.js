@@ -11,24 +11,25 @@ const Login = ({ setIsLoggedIn, setUser }) => {
   const handleLogin = async (credentials) => {
     try {
       // Call login API with credentials
-      // const response = await fetch("/api/login", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(credentials),
-      // });
-
-      // if (!response.ok) {
-      //   throw new Error("Invalid credentials");
-      // }
-
-      setIsLoggedIn(true);
-      setUser({
-        name: "John Doe",
-        email: "john.doe@example.com",
-        phone: "1234567890",
+      const response = await fetch("http://localhost:3000/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
       });
+
+      if (!response.ok) {
+        throw new Error("Invalid credentials");
+      }
+
+      const responseData = await response.json();
+      console.log("Response data:", responseData);
+      setUser({
+        ...responseData.data.user,
+        token: responseData.data.token,
+      });
+      setIsLoggedIn(true);
       router.push("/");
       // Redirect to home page upon successful login
       // You need to implement client-side routing here
